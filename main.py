@@ -4,10 +4,9 @@ from models import Base
 from database import engine, SessionLocal
 from sqlalchemy.orm import Session
 import crud
-from mangum import Mangum
+
 
 app = FastAPI()
-handler = Mangum(app)
 Base.metadata.create_all(engine)
 
 
