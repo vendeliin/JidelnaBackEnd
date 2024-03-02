@@ -7,5 +7,6 @@ class LunchBase(BaseModel):
 
 
 class UserBase(BaseModel):
+    id: str
     name: str
     lunches: List[LunchBase]
