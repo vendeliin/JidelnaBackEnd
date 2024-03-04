@@ -19,7 +19,7 @@ class Lunch(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     type_of_lunch = Column(Integer, default=0)
-    lunch_out = Column(Boolean, default=False)
+    lunch_out = Column(Integer, default=0)
 
     owner_id = Column(String, ForeignKey("users.id"))
 
