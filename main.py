@@ -14,13 +14,11 @@ origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=['*'],
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
+    allow_headers=['*']
 )
-
-
 
 def get_db():
     db = SessionLocal()
@@ -30,22 +28,19 @@ def get_db():
         db.close()
 
 
-@app.post("/create/user/")
+@app.post("/create")
 async def create_user(user: schemas.UserBase, db: Session = Depends(get_db)):
     return crud.create_user(user=user, db=db)
-
 
 @app.put("/users/{user_id}/update-lunch/{lunch_id}")
 async def update_user_lunch(user_id: str, type_of_lunch, db: Session = Depends(get_db)):
     return crud.update_lunch_for_user(user_id=user_id, type_of_lunch=type_of_lunch, db=db)
 
-
 @app.get("/users/{user_id}")
 async def get_user_by_id(user_id: str, db: Session = Depends(get_db)):
     return crud.get_user_by_id(db=db, user_id=user_id)
 
-
-@app.get("/users")
+@app.get("/usersWithLunchOut")
 async def get_users_with_lunch_out(db: Session = Depends(get_db)):
     return crud.get_all_users_with_lunch_out(db=db)
 
