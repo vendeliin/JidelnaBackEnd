@@ -10,3 +10,8 @@ class UserBase(BaseModel):
     id: str
     name: str
     lunches: List[LunchBase]
+
+
+class AdminUserBase(BaseModel):
+    password: str
+    name: str

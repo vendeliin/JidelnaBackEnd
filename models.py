@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from database import Base
@@ -25,3 +25,11 @@ class Lunch(Base):
 
     # Define the reverse relationship from Lunch to User
     user = relationship("User", back_populates="lunches")
+
+
+class AdminUser(Base):
+    __tablename__ = 'adminuser'
+
+    id = Column(Integer, primary_key=True, index=True)
+    password = Column(String, index=True)
+    name = Column(String, index=True)

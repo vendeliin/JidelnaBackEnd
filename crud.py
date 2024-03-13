@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import or_, and_
-from models import User, Lunch
+from models import User, Lunch, AdminUser
 import schemas
 def create_user(user: schemas.UserBase, db: Session):
     new_user = User(id=user.id, name=user.name)
@@ -16,6 +16,18 @@ def create_user(user: schemas.UserBase, db: Session):
     db.add(db_lunch)
     db.commit()
     return new_user.id
+
+def create_admin_user(user: schemas.AdminUserBase, db: Session):
+    admin_user = AdminUser(**user.dict())
+    db.add(admin_user)
+    db.commit()
+    db.refresh(admin_user)
+
+    return admin_user.name
+
+def login(user:schemas.AdminUserBase, db: Session):
+    db_user = db.query(AdminUser).filter(AdminUser.name==user.name, AdminUser.password==user.password).first()
+    return True if db_user else False
 def update_lunch_for_user(user_id: str, type_of_lunch: int, db: Session):
     existing_lunch = db.query(Lunch).filter(Lunch.owner_id == user_id).first()
 

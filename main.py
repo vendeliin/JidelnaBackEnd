@@ -32,6 +32,14 @@ def get_db():
 async def create_user(user: schemas.UserBase, db: Session = Depends(get_db)):
     return crud.create_user(user=user, db=db)
 
+@app.post("/login")
+async def login(user:schemas.AdminUserBase, db: Session = Depends(get_db)):
+    return crud.login(user=user, db=db)
+
+@app.post("/create/admin")
+async def create_admin(user: schemas.AdminUserBase, db:Session = Depends(get_db)):
+    return crud.create_admin_user(user=user, db=db)
+
 @app.put("/users/{user_id}/update-lunch/{lunch_id}")
 async def update_user_lunch(user_id: str, type_of_lunch, db: Session = Depends(get_db)):
     return crud.update_lunch_for_user(user_id=user_id, type_of_lunch=type_of_lunch, db=db)
