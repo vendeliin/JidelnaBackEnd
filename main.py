@@ -77,6 +77,11 @@ async def get_lunches_count_rest(db: Session = Depends(get_db)):
     return getCrud.get_count_of_lunches_rest(db=db)
 
 
+@app.get("/user/name/{user_id}")
+async def get_user_name(user_id: str, db: Session = Depends(get_db)):
+    return getCrud.get_user_name_by_id(user_id=user_id, db=db)
+
+
 @app.get("/lunches/count/out")
 async def get_lunches_count_out(db: Session = Depends(get_db)):
     return getCrud.get_count_of_lunches_out(db=db)
