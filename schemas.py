@@ -16,3 +16,7 @@ class UserBase(BaseModel):
 class AdminUserBase(BaseModel):
     password: str
     name: str
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str

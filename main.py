@@ -43,14 +43,14 @@ async def create_admin(user: schemas.AdminUserBase, db: Session = Depends(get_db
     return postCrud.create_admin_user(user=user, db=db)
 
 
-@app.put("/user/{user_name}/update-lunch/{lunch_id}")
-async def update_user_lunch(user_name: str, type_of_lunch, db: Session = Depends(get_db)):
+@app.put("/user/{user_name}/update-lunch/{type_of_lunch}")
+async def update_user_lunch(user_name: str, type_of_lunch: int, db: Session = Depends(get_db)):
     return putCrud.update_lunch_for_user(user_name=user_name, type_of_lunch=type_of_lunch, db=db)
 
 
-@app.put("/user/{user_name}/null/lunch")
-async def null_user_lunch(user_name: str, db: Session = Depends(get_db)):
-    return putCrud.update_lunch_for_users_with_no_lunch(user_name=user_name, db=db)
+# @app.put("/user/{user_name}/null/lunch")
+# async def null_user_lunch(user_name: str, db: Session = Depends(get_db)):
+#     return putCrud.update_lunch_for_users_with_no_lunch(user_name=user_name, db=db)
 
 
 @app.get("/user/{user_id}")
@@ -66,6 +66,7 @@ async def get_users_with_lunch_out(db: Session = Depends(get_db)):
 @app.get("/users/All")
 async def get_users(db: Session = Depends(get_db)):
     return getCrud.get_all_users_who_have_lunch(db=db)
+
 
 @app.get("/users/count")
 async def get_count_of_users(db: Session = Depends(get_db)):
@@ -96,8 +97,7 @@ async def delete_users(db: Session = Depends(get_db)):
 async def delete_user(user_id: str, db: Session = Depends(get_db)):
     return deleteCrud.delete_user(user_id=user_id, db=db)
 
+
 @app.delete("/user/delete/by/grade/{grade}")
 async def delete_user_by_grade(grade: int, db: Session = Depends(get_db)):
     return deleteCrud.delete_users_by_grade(db=db, grade=grade)
-
-
