@@ -1,97 +1,59 @@
-# FastAPI Application
+# FastAPI User and Lunch Management Application
 
-This is a FastAPI application that provides an API for user and lunch management.
+An API application built with FastAPI for user and lunch management.
 
-## Endpoints Documentation
+## Table of Contents
 
-### Create a User
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [API Endpoints](#api-endpoints)
+- [Database Schema](#database-schema)
+- [Testing](#testing)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
 
-- URL: `/create/user`
-- Method: `POST`
-- Body: `user` object
-- Response: Creates a new user
+## Installation
 
-### Log In
+This project uses Python 3.10 and FastAPI. Go over the following steps to set up the development environment:
 
-- URL: `/login`
-- Method: `POST`
-- Body: `AdminUserBase` object
-- Response: Authenticates a user
+1. Clone the project.
+2. Install Python 3.10
+3. Install the dependencies: `pip install -r requirements.txt`
+4. Run the project: `uvicorn main:app --reload`
 
-### Create Admin User
+Please adjust the above commands to fit your operating system and environment needs.
 
-- URL: `/create/admin`
-- Method: `POST`
-- Body: `AdminUserBase` object
-- Response: Creates a new admin user
+## Getting Started
 
-### Update User Lunch
+To get the application running, use the following endpoint formats and operations:
 
-- URL: `/user/{user_name}/update-lunch/{type_of_lunch}`
-- Method: `PUT`
-- Parameters: `user_name` (string), `type_of_lunch` (int)
-- Response: Updates the lunch type for a user
+(Insert the detailed description for each of your API endpoints here)
 
-### Get User by ID
+## API Endpoints
 
-- URL: `/user/{user_id}`
-- Method: `GET`
-- Parameters: `user_id` (string)
-- Response: Returns information of a user by ID
+Here, list each of your API endpoints:
 
-### Get Lunch Out Users
+1. API endpoint 1: ...
+2. API endpoint 2: ...
+3. API endpoint 3: ...
 
-- URL: `/users/WithLunchOut`
-- Method: `GET`
-- Response: Returns users having lunch out 
+## Database Schema
 
-### Get All Users
+Explain the database schema used for the project, the tables and relationships between them.  
 
-- URL: `/users/All`
-- Method: `GET`
-- Response: Returns all users 
+## Testing
 
-### Get Users Count
+Explain how tests are run in the project (if applicable).
 
-- URL: `/users/count`
-- Method: `GET`
-- Response: Returns the number of users 
+## Deployment
 
-### Get Lunches Count at Restaurant
+Briefly explain how the application can be deployed to a live environment.
 
-- URL: `/lunches/count/rest`
-- Method: `GET`
-- Response: Returns the count of lunches at the restaurant 
+## Contributing
 
-### Get User Name
+Contact or any specific instructions for people who want to contribute to this project.
 
-- URL: `/user/name/{user_id}`
-- Method: `GET`
-- Parameters: `user_id` (string)
-- Response: Returns the name of a user
+## License
 
-### Get Lunches Count Out
-
-- URL: `/lunches/count/out`
-- Method: `GET`
-- Response: Returns the count of lunches out 
-
-### Delete All Users
-
-- URL: `/users/delete`
-- Method: `DELETE`
-- Response: Deletes all users 
-
-### Delete User
-
-- URL: `/user/delete/{user_id}`
-- Method: `DELETE`
-- Parameters: `user_id` (string)
-- Response: Deletes a user 
-
-### Delete Users by Grade
-
-- URL: `/user/delete/by/grade/{grade}`
-- Method: `DELETE`
-- Parameters: `grade` (int)
-- Response: Deletes users of a specific grade
+Include a short notice about licensing.

@@ -1,8 +1,6 @@
 from fastapi import HTTPException
-from sqlalchemy.orm import Session, joinedload
-from sqlalchemy import or_, and_
-from models import User, Lunch, AdminUser
-import schemas
+from sqlalchemy.orm import Session
+from app.models.models import User, Lunch
 
 
 def update_lunch_for_user(user_name: str, type_of_lunch: int, db: Session):

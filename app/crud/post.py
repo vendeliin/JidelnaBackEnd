@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session, joinedload
-from models import User, Lunch
-import schemas
+from app.models.models import User, Lunch
+from app.schemas import schemas
 
 
 def create_user(user: schemas.UserBase, db: Session):

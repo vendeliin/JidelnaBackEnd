@@ -3,8 +3,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
-from database import Base
-from main import app, get_db
+from app.models.database import Base
+from app.main import app, get_db
 
 SQLALCHEMY_DATABASE_URL = "sqlite://"
 
