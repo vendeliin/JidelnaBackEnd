@@ -32,5 +32,6 @@ class AdminUser(Base):
     __tablename__ = 'adminuser'
 
     id = Column(Integer, primary_key=True, index=True)
-    password = Column(String, index=True)
     name = Column(String, index=True)
+    password = Column(String)
+

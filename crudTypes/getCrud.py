@@ -3,12 +3,12 @@ from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import or_, and_
 from models import User, Lunch
 
+
 def get_user_by_id(db: Session, user_id: str):
     db_user = db.query(User).filter(User.id == user_id).options(joinedload(User.lunches)).first()
 
     if not db_user:
         return 0
-
 
     existing_lunch = db.query(Lunch).filter(Lunch.owner_id == user_id).first()
 
@@ -60,15 +60,17 @@ def get_count_of_users(db: Session):
     users_count = db.query(User).count()
     return users_count
 
+
 def get_count_of_lunches_rest(db: Session):
     count_of_lunches_all = db.query(Lunch).filter(Lunch.type_of_lunch > 0).count()
-    count_of_lunches_out = db.query(Lunch).filter(Lunch.lunch_out > 0, Lunch.type_of_lunch>0).count()
+    count_of_lunches_out = db.query(Lunch).filter(Lunch.lunch_out > 0, Lunch.type_of_lunch > 0).count()
     return count_of_lunches_all - count_of_lunches_out
 
 
 def get_count_of_lunches_out(db: Session):
-    count_of_lunches_out = db.query(Lunch).filter(Lunch.lunch_out > 0, Lunch.type_of_lunch>0).count()
+    count_of_lunches_out = db.query(Lunch).filter(Lunch.lunch_out > 0, Lunch.type_of_lunch > 0).count()
     return count_of_lunches_out
+
 
 def get_user_name_by_id(user_id: str, db: Session):
     user_name = db.query(User).filter(User.id == user_id).first()

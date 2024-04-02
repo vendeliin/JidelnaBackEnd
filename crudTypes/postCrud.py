@@ -1,13 +1,14 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session, joinedload
-from models import User, Lunch, AdminUser
+from models import User, Lunch
 import schemas
+
 
 def create_user(user: schemas.UserBase, db: Session):
     db_user = db.query(User).filter(User.id == user.id).options(joinedload(User.lunches)).first()
 
     if db_user:
-       raise HTTPException(status_code=500, detail="User already exists")
+        raise HTTPException(status_code=500, detail="User already exists")
 
     new_user = User(**user.model_dump())
     db.add(new_user)
@@ -21,17 +22,3 @@ def create_user(user: schemas.UserBase, db: Session):
     db.add(db_lunch)
     db.commit()
     return new_user.name
-
-
-def create_admin_user(user: schemas.AdminUserBase, db: Session):
-    admin_user = AdminUser(**user.model_dump())
-    db.add(admin_user)
-    db.commit()
-    db.refresh(admin_user)
-
-    return admin_user.name
-
-
-def login(user: schemas.AdminUserBase, db: Session):
-    db_user = db.query(AdminUser).filter(AdminUser.name == user.name, AdminUser.password == user.password).first()
-    return True if db_user else False

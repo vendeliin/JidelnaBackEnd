@@ -1,4 +1,6 @@
 from fastapi import FastAPI, Depends
+
+import auth
 import schemas
 from models import Base
 from database import engine, SessionLocal
@@ -6,18 +8,22 @@ from sqlalchemy.orm import Session
 from crudTypes import putCrud, getCrud, deleteCrud, postCrud
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
-Base.metadata.create_all(engine)
 
-origins = ["*"]
+def create_app():
+    fastapi_app = FastAPI()
+    Base.metadata.create_all(engine)
+    origins = ["*"]
+    fastapi_app.add_middleware(
+        CORSMiddleware,
+        allow_origins=['*'],
+        allow_credentials=True,
+        allow_methods=["GET", "POST", "PUT", "DELETE"],
+        allow_headers=['*']
+    )
+    return fastapi_app
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=['*'],
-    allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT", "DELETE"],
-    allow_headers=['*']
-)
+
+app = create_app()
 
 
 def get_db():
@@ -35,12 +41,12 @@ async def create_user(user: schemas.UserBase, db: Session = Depends(get_db)):
 
 @app.post("/login")
 async def login(user: schemas.AdminUserBase, db: Session = Depends(get_db)):
-    return postCrud.login(user=user, db=db)
+    return auth.authenticate_user(user=user, db=db)
 
 
 @app.post("/create/admin")
 async def create_admin(user: schemas.AdminUserBase, db: Session = Depends(get_db)):
-    return postCrud.create_admin_user(user=user, db=db)
+    return auth.create_user(user=user, db=db)
 
 
 @app.put("/user/{user_name}/update-lunch/{type_of_lunch}")
