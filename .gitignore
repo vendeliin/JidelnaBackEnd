@@ -1,30 +1,45 @@
-.idea
-.ipynb_checkpoints
-.mypy_cache
-.vscode
-__pycache__
-.pytest_cache
-htmlcov
-dist
-site
+# Python cache files
+__pycache__/
+
+# Environments directories
+.env
+.venv
+env/
+venv/
+
+# FastAPI instance folders
+instance/
+
+# Databases
+*.db
+*.db3
+*.sqlite
+
+# Logs and misc
+logs/
+*.log
+
+# Secrets
+secrets.json
+
+# Libraries
+*.egg-info/
+dist/
+build/
+*.eggs
+
+# Testing
 .coverage
-coverage.xml
-.netlify
-test.db
-log.txt
-Pipfile.lock
-env3.*
-env
-docs_build
-site_build
-venv
-docs.zip
-archive.zip
+.htmlcov/
 
-# vim temporary files
-*~
-.*.sw?
-.cache
-
-# macOS
+# OS generated files
 .DS_Store
+*.pyc
+
+# IDEs / text editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*.bak
