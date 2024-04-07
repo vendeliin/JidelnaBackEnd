@@ -11,7 +11,6 @@ class User(Base):
     name = Column(String, index=True)
     grade = Column(Integer, index=True)
 
-    # Define the relationship between User and Lunch
     lunches = relationship("Lunch", back_populates="user")
 
 

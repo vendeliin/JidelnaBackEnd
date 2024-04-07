@@ -55,10 +55,9 @@ def get_all_users_who_have_lunch(db: Session):
         return 0
     return db_users
 
-
 def get_count_of_users(db: Session):
-    users_count = db.query(User).count()
-    return users_count
+    count = db.query(User).count()
+    return  count
 
 
 def get_count_of_lunches_rest(db: Session):

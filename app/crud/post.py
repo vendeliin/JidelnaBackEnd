@@ -10,7 +10,7 @@ def create_user(user: schemas.UserBase, db: Session):
     if db_user:
         raise HTTPException(status_code=500, detail="User already exists")
 
-    new_user = User(**user.model_dump())
+    new_user = User(name=user.name, id=user.id, grade=user.grade)
     db.add(new_user)
     db.commit()
     db.refresh(new_user)

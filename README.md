@@ -1,59 +1,59 @@
-# FastAPI User and Lunch Management Application
+# Project Name
 
-An API application built with FastAPI for user and lunch management.
+## Introduction 
+This is an fastapi api for school cafeteria for chipping lunches. 
 
-## Table of Contents
+## Use cases
 
-- [Installation](#installation)
-- [Getting Started](#getting-started)
-- [API Endpoints](#api-endpoints)
-- [Database Schema](#database-schema)
-- [Testing](#testing)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
+### **Use Case: Creating a New User**
+- **Description:** The administrator creates a new student user in the system.
+- **Actor:** Administrator
+- **Basic Flow of Events:**
+  1. The administrator navigates to the user management area in the system.
+  2. The administrator selects the option to create a new user.
+  3. The system presents a form requesting necessary student details.
+  4. The administrator enters the student's details into the form fields.
+  5. The administrator submits the form.
 
-## Installation
+### Use Case: Student Tag Scanning
+- **Description:** The system scans the RFID tag as a student presents it.
+- **Actor:** RFID scanner
+- **Basic Flow of Events:**
+  1. The student presents their card to the RFID scanner.
+  2. The scanner reads and verifies the card data.
+  3. The system retrieves the student's lunch number if has any.
 
-This project uses Python 3.10 and FastAPI. Go over the following steps to set up the development environment:
+### Use Case: Assigning Lunch to Student
+- **Description:** The system assigns lunch to the student after validating their RFID card.
+- **Actor:** Lunch assignment system.
+- **Basic Flow of Events:**
+  1. The system assigns a lunch to the student.
+  2. The system logs the assignment in the student's account.
 
-1. Clone the project.
-2. Install Python 3.10
-3. Install the dependencies: `pip install -r requirements.txt`
-4. Run the project: `uvicorn main:app --reload`
 
-Please adjust the above commands to fit your operating system and environment needs.
+## Architecture Structure
+Diagram and explanation of the architecture of your app.
 
-## Getting Started
+## ERD (Entity Relationship Diagram)
+![Alternative text for the image](/static/ERD.png)
 
-To get the application running, use the following endpoint formats and operations:
+## Authentication
+Describe how authentication is handled in your project.
 
-(Insert the detailed description for each of your API endpoints here)
+## API Endpoints Description
+List and describe each of the API endpoints.
 
-## API Endpoints
+## Error Handling
+Explain how errors are handled in your application.
 
-Here, list each of your API endpoints:
+## Source Code
+All source code is stored on GitHub at [GitHub Repository](YOUR REPO URL).
 
-1. API endpoint 1: ...
-2. API endpoint 2: ...
-3. API endpoint 3: ...
+## Technologies Used
+List all the technologies used in your project.
+- FastAPI
+- PostgreSQL
+- Docker
 
-## Database Schema
-
-Explain the database schema used for the project, the tables and relationships between them.  
-
-## Testing
-
-Explain how tests are run in the project (if applicable).
-
-## Deployment
-
-Briefly explain how the application can be deployed to a live environment.
-
-## Contributing
-
-Contact or any specific instructions for people who want to contribute to this project.
-
-## License
-
-Include a short notice about licensing.
+## Sources
+Cite any sources or references you've used in developing your project.
