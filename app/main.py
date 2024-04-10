@@ -88,7 +88,7 @@ async def login(user: schemas.AdminUserBase, db: Session = Depends(get_db)):
 
 @app.post("/admins")
 async def create_admin(user: schemas.AdminUserBase, db: Session = Depends(get_db)):
-    return auth.create_user(user=user, db=db)
+    return auth.create_admin_user(user=user, db=db)
 
 
 @app.delete("/users")
