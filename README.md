@@ -55,11 +55,11 @@ This function creates an admin user in a given database.
 This function starts by hashing the password, then creates a new instance of the `AdminUser` with the provided name and hashed password. This user is then added to the database with `db.add(db_user)`, and the changes are committed to the database with `db.commit()`. The new user is then refreshed and the username is returned.
 
 
-### Function: get_password_hash
+### `get_password_hash`
 
 `get_password_hash` is a function that takes a plain password as an argument and returns its hashed version. The `passlib` library's `hash` method is used to convert the plain password into a hashed version.
 
-### verify_password
+### `verify_password`
 This function verifies if the plain, unhashed password matches the hashed password.
 
 **Parameters:**
@@ -72,7 +72,7 @@ This function verifies if the plain, unhashed password matches the hashed passwo
 A boolean value indicating the result of the password verification check.
 
 
-### authenticate_user
+### `authenticate_user`
 This function authenticates a user in a SQLAlchemy session database by comparing the name and verifying the password of the user.
 
 **Parameters:**
@@ -87,7 +87,30 @@ A boolean value indicating whether the user was successfully authenticated or no
 Please remember that `Session`, `schemas.AdminUserBase`, `AdminUser`, and `pwd_context` need to be appropriately defined or imported in your actual code.
 
 ## API Endpoints Description
-List and describe each of the API endpoints.
+
+### POST /users
+This endpoint creates a new user in the database. 
+
+**Request Body:**
+
+- `user`: An instance of `UserBase` from the schemas.
+
+**Returns:**
+
+The name of the newly created user.
+
+### PUT /users/{user_name}/lunches/{type_of_lunch}
+This endpoint updates a user's lunch in the database.
+
+**Parameters:**
+
+- `user_name`: A string representing the username.
+- `type_of_lunch`: An integer representing the type of lunch. The valid range is from 0 to 3, inclusive.
+- `db`: A SQLAlchemy session.
+
+**Returns:**
+
+A Boolean value indicating the success of the operation.
 
 ## Error Handling
 Explain how errors are handled in your application.
