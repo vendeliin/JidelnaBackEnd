@@ -55,25 +55,6 @@ This function creates an admin user in a given database.
 This function starts by hashing the password, then creates a new instance of the `AdminUser` with the provided name and hashed password. This user is then added to the database with `db.add(db_user)`, and the changes are committed to the database with `db.commit()`. The new user is then refreshed and the username is returned.
 
 
-## get_password_hash
-This function takes a `password` string as input and returns the hashed password using `pwd_context.hash(password)`.
-
-**Parameter:**
-
-- `password`: A string.
-
-**Returns:**
-
-- The hashed password.
-
-Please note that `Session`, `schemas.AdminUserBase`, `AdminUser`, and `pwd_context` are not defined in the given code. Make sure they are appropriately defined or imported in your actual code.
-
-
-### Prerequisite 
-
-To secure passwords, we're using the `passlib` library's `CryptContext`, which allows us to hash passwords.
-Here, `bcrypt` hashing scheme is used. 
-
 ### Function: get_password_hash
 
 `get_password_hash` is a function that takes a plain password as an argument and returns its hashed version. The `passlib` library's `hash` method is used to convert the plain password into a hashed version.
@@ -91,7 +72,7 @@ This function verifies if the plain, unhashed password matches the hashed passwo
 A boolean value indicating the result of the password verification check.
 
 
-## authenticate_user
+### authenticate_user
 This function authenticates a user in a SQLAlchemy session database by comparing the name and verifying the password of the user.
 
 **Parameters:**
