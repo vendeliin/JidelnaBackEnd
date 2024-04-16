@@ -112,17 +112,137 @@ This endpoint updates a user's lunch in the database.
 
 A Boolean value indicating the success of the operation.
 
+### GET /users/total
+This endpoint retrieves the total count of users in the database.
+
+**Request Parameters:**
+
+None
+
+**Returns:**
+
+An integer value representing the total count of users in the database.
+
+### GET /users/lunch
+This endpoint retrieves all users from the database who have either lunch_out 1 or 2 and type_of_lunch 1, 2 or 3.
+
+**Request Parameters:**
+
+None
+
+**Returns:**
+
+A list of user instances where each instance represents a user who satisfies the given lunch conditions. If no users satisfy these conditions, the endpoint returns zero.
+
+### GET /users/{user_id}
+This endpoint retrieves a specific user from the database by `user_id`. If the user has any lunch records, it will also update the `lunch_out` field of the user's lunch record by following rules:
+
+If `lunch_out` is 0, it will be updated to 1.
+If `lunch_out` is 1, it will be updated to 2.
+
+**Path Parameters:**
+
+- `user_id`: The ID of the user to lookup in the database.
+
+**Returns:**
+
+An instance of the looked-up user if found, along with updated lunch records if any. If the user is not found, the endpoint returns zero. If updating the `lunch_out` field fails, it raises an HTTP 500 error with the detail "Failed to update lunch_out".
+
+### GET /users/{user_id}/name
+This endpoint retrieves the name of a specific user given the `user_id`.
+
+**Path Parameters:**
+
+- `user_id`: The ID of the user whose name is to be retrieved.
+
+**Returns:**
+
+The name of the user if found. If no user is found with the provided `user_id`, the endpoint would return None.
+
+### GET /users/lunch/out
+This endpoint retrieves the count of lunches where `lunch_out` and `type_of_lunch` are greater than zero.
+
+**Request Parameters:**
+
+None
+
+**Returns:**
+
+An integer value representing the count of lunches where `lunch_out` and `type_of_lunch` are greater than zero.
+
+### GET /lunches/rest/total
+This endpoint retrieves the total number of lunches in the database with `type_of_lunch` greater than zero but not marked as `lunch_out` (where `lunch_out` is also greater than zero).
+
+**Request Parameters:**
+
+None
+
+**Returns:**
+
+An integer value representing the count of lunches in the database with `type_of_lunch` greater than zero but not marked as `lunch_out`.
+
+### GET /lunches/out/total
+This endpoint retrieves the total number of lunches with `lunch_out` and `type_of_lunch` greater than zero.
+
+**Request Parameters:**
+
+None
+
+**Returns:**
+
+An integer value representing the count of lunches where `lunch_out` and `type_of_lunch` are greater than zero.
+
+### DELETE /users
+This endpoint deletes all users from the database. It also deletes all related lunch records for each deleted user.
+
+**Request Parameters:**
+
+None
+
+**Responses:**
+
+- If the operation is successful, it does not return any content with a HTTP status code 204.
+- If there is an error during the operation, it will throw the respective exception with relevant details.
+
+### DELETE /users/{user_id}
+This endpoint deletes a specific user from the database using a `user_id`. It also deletes the lunch record associated with the user.
+
+**Path Parameters:**
+
+- `user_id`: The ID of the user to be deleted.
+
+**Responses:**
+
+- The name of the user that was deleted is returned if the operation is successful.
+- If there is an error during the operation, it will throw the respective exception with relevant details.
+
+### DELETE /users/grade/{grade}
+This endpoint deletes users from the database based on their grade. It also deletes all related lunch records for each deleted user.
+
+**Path Parameters:**
+
+- `grade`: The grade of the users to be deleted.
+
+**Responses:**
+
+- The grade of the users that were deleted is returned if the operation is successful.
+- If there is an error during the operation, it will throw the respective exception with relevant details.
+
 ## Error Handling
-Explain how errors are handled in your application.
+1. **HTTPException:** The FastAPI `HTTPException` is raised whenever an exceptional situation occurs. This carries an HTTP status code and a detail message to describe the issue. For instance, if the requested user does not exist, a `HTTPException` is raised with status code 404 and detail message "User not found". Similarly, if an invalid `type_of_lunch` is provided (i.e., less than 0 or greater than 3), another `HTTPException` is raised with a 404 status code and an "Invalid type of lunch" detail message.
+
+2. **Database Operations:** The function tries to execute database operations. If any exception occurs during this process (e.g., trying to modify a lunch that does not exist), the operations are wrapped in a `try/except` block. In case an error occurs, the database operations are rolled back to the state before the operations began and the respective `HTTPException` is raised.
 
 ## Source Code
 All source code is stored on GitHub at [GitHub Repository](YOUR REPO URL).
 
 ## Technologies Used
-List all the technologies used in your project.
 - FastAPI
+- SQLAlchemy
 - PostgreSQL
 - Docker
 
 ## Sources
-Cite any sources or references you've used in developing your project.
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [SQLAlchemy Documentation](https://docs.sqlalchemy.org/en/20/)
+- [AUTH in fastapi](https://www.fastapitutorial.com/blog/authentication-in-fastapi/)
