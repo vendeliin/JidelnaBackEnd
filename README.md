@@ -1,4 +1,4 @@
-# Project Name
+# Jidlena BE
 
 ## Introduction 
 This is an fastapi api for school cafeteria for chipping lunches. 
@@ -30,9 +30,6 @@ This is an fastapi api for school cafeteria for chipping lunches.
   1. The system assigns a lunch to the student.
   2. The system logs the assignment in the student's account.
 
-
-## Architecture Structure
-Diagram and explanation of the architecture of your app.
 
 ## ERD (Entity Relationship Diagram)
 ![Alternative text for the image](/static/ERD.png)
@@ -234,7 +231,7 @@ This endpoint deletes users from the database based on their grade. It also dele
 2. **Database Operations:** The function tries to execute database operations. If any exception occurs during this process (e.g., trying to modify a lunch that does not exist), the operations are wrapped in a `try/except` block. In case an error occurs, the database operations are rolled back to the state before the operations began and the respective `HTTPException` is raised.
 
 ## Source Code
-All source code is stored on GitHub at [GitHub Repository](YOUR REPO URL).
+All source code is stored on GitHub at [GitHub Repository](https://github.com/vendeliin/JidelnaBackEnd.git).
 
 ## Technologies Used
 - FastAPI
